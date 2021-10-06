@@ -1,40 +1,45 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Hello from "./Hello";
+import React, {useState} from "react";
+import {Box,TextField} from "@mui/material";
+import Hello from "./Tab";
+import RemoveIcon from '@mui/icons-material/Remove';
 
 const ChatWidget = () => {
-  const [value, setValue] = React.useState("1");
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  const [visibility, setVisibility]=useState(false);
   return (
-    <Box style={{ border: "1px solid black", width: "380px", height: "570px" }}>
+    <Box>
+      <button onClick={()=>{setVisibility(true)}}>Click me!</button>
+      <button style={{backgroundColor:"white"}}><i class="far fa-comment-alt fa-lg" /> </button> 
+    <Box style={{ border: "1px solid black", width: "380px", height: "570px", marginLeft:"450px",display:visibility===true?"":"none" }}>
       <Box
         style={{
           border: "1px solid black",
           backgroundColor: "#804294",
           width: "380px",
           height: "42px",
+          color: "white",
+          display:"flex",
+          justifyContent:"space-between"
+
         }}
       >
-        <p style={{ color: "white" }}>
-          <img
-            src="https://dw-iconusers.flaticon.com/54122/54122415/1633350526084.svg?token=exp=1633351452~hmac=b7dbcb27c84d39e4247177edf1976a79"
-            height="20px"
-          ></img>{" "}
-          <span>Task ID:235897 Shubham Singh</span>{" "}
-          <img src="https://dw-iconusers.flaticon.com/54122/54122415/1633350661128.svg?token=exp=1633351596~hmac=c715439695c6ac97f6da6d248e9daada"
-          height="20px"></img>
-        </p>
+        <i class="far fa-comment fa-lg" style={{marginTop:"17px"}}></i>
+          <span style={{marginTop:"7px"}}>Task ID:235897 Shubham Singh</span>
+          <RemoveIcon style={{float:"right",marginRight:"5px"}} onClick={()=>{setVisibility(false)}} />
+       
       </Box>
       <Box style={{paddingRight:"15px"}}>
         <Hello />
       </Box>
-      <Box style={{textAlign:"center"}}>
-          <TextField style={{width:"360px"}}></TextField>
+      <Box style={{textAlign:"center",position:"fixed",marginTop:"40px",marginLeft:"10px"}}>
+      <TextField
+      style={{width:"350px",height:"50px"}}
+        InputProps={{endAdornment: <i class="fas fa-arrow-circle-right fa-lg"></i>}}
+      />
       </Box>
     </Box>
+    {/* <i class="fas fa-arrow-alt-down"></i>
+    <button style={{backgroundColor:"white"}}><i class="far fa-comment-alt fa-lg" /> </button> */}
+    </Box> 
   );
 };
 export default ChatWidget;
